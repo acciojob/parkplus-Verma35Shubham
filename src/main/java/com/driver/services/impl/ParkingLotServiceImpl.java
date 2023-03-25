@@ -39,11 +39,9 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         ParkingLot parkingLot=parkingLotRepository1.findById(parkingLotId).get();
         spot.setParkingLot(parkingLot);
 
-        //bidirectional
         parkingLot.getSpotList().add(spot);
 
         parkingLotRepository1.save(parkingLot);
-
 
         return spot;
     }
@@ -70,7 +68,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         spotRepository1.save(spot);
 
         return spot;
-
     }
 
     @Override

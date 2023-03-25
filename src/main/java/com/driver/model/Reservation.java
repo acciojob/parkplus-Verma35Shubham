@@ -7,13 +7,28 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int numberOfHours;
 
-    public Reservation() {
-    }
+
+    @ManyToOne
+    @JoinColumn
+    private User user;
+
+
+    @ManyToOne
+    @JoinColumn
+    private Spot spot;
+
+
+    @OneToOne(mappedBy = "reservation",cascade = CascadeType.ALL)
+    private Payment payment;
 
     public Reservation(int numberOfHours) {
         this.numberOfHours = numberOfHours;
+    }
+
+    public Reservation() {
     }
 
     public int getId() {
@@ -32,25 +47,6 @@ public class Reservation {
         this.numberOfHours = numberOfHours;
     }
 
-    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
-    private Payment payment;
-
-    @ManyToOne
-    @JoinColumn
-    private User user;
-
-    @ManyToOne
-    @JoinColumn
-    private Spot spot;
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
     public User getUser() {
         return user;
     }
@@ -65,5 +61,13 @@ public class Reservation {
 
     public void setSpot(Spot spot) {
         this.spot = spot;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }

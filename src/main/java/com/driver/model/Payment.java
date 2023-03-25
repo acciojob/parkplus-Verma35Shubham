@@ -14,18 +14,18 @@ public class Payment {
     @Enumerated(EnumType.STRING)
     private PaymentMode paymentMode;
 
-    @OneToOne
-    @JoinColumn
-    private Reservation reservation;
+    public Payment(Boolean paymentCompleted, PaymentMode paymentMode) {
+        this.paymentCompleted = paymentCompleted;
+        this.paymentMode = paymentMode;
+    }
 
     public Payment() {
         this.paymentCompleted = false;
     }
 
-    public Payment(Boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
-        this.paymentCompleted = paymentCompleted;
-        this.paymentMode = paymentMode;
-    }
+    @OneToOne
+    @JoinColumn
+    private Reservation reservation;
 
     public int getId() {
         return id;
