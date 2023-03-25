@@ -35,9 +35,8 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
         Spot spot = new Spot();
         spot.setSpotType(spotType);
-        spot.setPricaPerHour(pricePerHour);
-        spot.setOccupied(false);
-
+        spot.setPricePerHour(pricePerHour);
+        spot.setParkingLot(parkingLot);
         parkingLot.getSpotList().add(spot);
         parkingLotRepository1.save(parkingLot);
 
@@ -61,7 +60,9 @@ public class ParkingLotServiceImpl implements ParkingLotService {
                 break;
             }
         }
-        updateSpot.setPricaPerHour(pricePerHour);
+
+        updateSpot.setParkingLot(parkingLot);
+        updateSpot.setPricePerHour(pricePerHour);
 
         parkingLotRepository1.save(parkingLot);
 

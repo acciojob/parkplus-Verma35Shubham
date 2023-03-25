@@ -4,24 +4,27 @@ import javax.persistence.*;
 
 @Entity
 public class Payment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(columnDefinition = "TINYINT(1)")
     private Boolean paymentCompleted;
 
     @Enumerated(EnumType.STRING)
     private PaymentMode paymentMode;
 
-    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
-    Reservation reservation;
+    @OneToOne
+    @JoinColumn
+    private Reservation reservation;
 
     public Payment() {
+        this.paymentCompleted = false;
     }
 
-    public Payment(int id, Boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
-        this.id = id;
+    public Payment(Boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
         this.paymentCompleted = paymentCompleted;
         this.paymentMode = paymentMode;
-        this.reservation = reservation;
     }
 
     public int getId() {

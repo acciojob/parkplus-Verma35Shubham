@@ -12,8 +12,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int id, int numberOfHours) {
-        this.id = id;
+    public Reservation(int numberOfHours) {
         this.numberOfHours = numberOfHours;
     }
 
@@ -33,17 +32,16 @@ public class Reservation {
         this.numberOfHours = numberOfHours;
     }
 
-    @OneToOne
-    @JoinColumn
-    Payment payment;
+    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
+    private Payment payment;
 
     @ManyToOne
     @JoinColumn
-    User user;
+    private User user;
 
     @ManyToOne
     @JoinColumn
-    Spot spot;
+    private Spot spot;
 
     public Payment getPayment() {
         return payment;
