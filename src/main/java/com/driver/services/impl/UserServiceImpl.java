@@ -29,11 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(String name, String phoneNumber, String password) {
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
-        user.setPhoneNumber(phoneNumber);
-
+        User user=new User(name,phoneNumber,password);
         userRepository4.save(user);
     }
 }
